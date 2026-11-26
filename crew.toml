@@ -1,0 +1,9 @@
+name = "openruc.pe"
+
+[services.api]
+cwd = "./apps/api"
+command = "bun run dev:portless"
+
+[services.web]
+cwd = "./apps/web"
+command = "bun run dev:portless"

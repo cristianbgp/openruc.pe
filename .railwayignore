@@ -1,0 +1,15 @@
+.git
+.env
+.env.*
+.aws
+.railway
+.work
+.worktrees
+node_modules
+dist
+docs
+apps/api/test
+apps/web/*
+!apps/web/package.json
+*.zip
+apps/api/data/

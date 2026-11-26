@@ -1,0 +1,21 @@
+# Generated archives, work files, databases, and build output stay out of Git.
+dist/
+.work/
+data/
+coverage/
+node_modules/
+
+.DS_Store
+
+# Local credentials
+.env
+.env.*
+!.env.example
+/.aws/
+/.railway/
+
+# Local feature worktrees
+.worktrees/
+
+# Local Superpowers plans and specs
+/docs/superpowers/

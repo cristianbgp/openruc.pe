@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <title>openruc.pe</title>
+  <style>
+    .tile { fill: #171717; }
+    .mark { color: #f5f5f5; }
+    @media (prefers-color-scheme: dark) {
+      .tile { fill: #ededed; }
+      .mark { color: #171717; }
+    }
+  </style>
+  <rect class="tile" width="32" height="32" rx="7" />
+  <!-- Outlines of r and period from Geist Mono at weight 800. -->
+  <path class="mark" fill="currentColor" d="M5.5 22.15V19.43H9.81L8.36 20.88V11.12L9.81 12.57H5.5V9.85H10.88L11.19 13.68L10.9 13.43Q11.02 11.69 11.76 10.77Q12.49 9.85 14.05 9.85H16.89V12.65H14.34Q13.49 12.65 12.94 12.93Q12.39 13.21 12.12 13.78Q11.86 14.34 11.86 15.2V20.88L10.41 19.43H15.55V22.15ZM22.64 22.15V18.48H26.5V22.15Z" />
+</svg>

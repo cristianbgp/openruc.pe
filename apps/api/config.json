@@ -1,0 +1,20 @@
+{
+  "source": {
+    "listing_url": "http://www.sunat.gob.pe/descargaPRR/mrc137_padron_reducido.html",
+    "fallback_zip_urls": [
+      "http://www2.sunat.gob.pe/padron_reducido_ruc.zip"
+    ],
+    "encoding": "win1252",
+    "delimiter": "|"
+  },
+  "dataset": {
+    "max_nombre_chars": 120,
+    "max_domicilio_chars": 90,
+    "batch_size": 10000
+  },
+  "api": {
+    "cors_origins": ["*"],
+    "rate_limit": 120,
+    "rate_window_ms": 60000
+  }
+}
