@@ -198,7 +198,7 @@ Required GitHub Actions secrets are `RAILWAY_TOKEN`, `RAILWAY_PROJECT_ID`, and `
 
 Pull requests and pushes to `main` install the locked Bun dependencies, run all checks, build the landing page, generate the fixture database, and build the Docker image.
 
-At 05:00 UTC daily, or when manually dispatched, the production workflow compares SUNAT's ETag, Last-Modified value, Content-Length, and the pipeline version with the deployed metadata. A changed signature, unavailable metadata, or manual force triggers a Railway deployment. The upload contains source files only. Each workflow run and retry supplies a unique build marker so Railway regenerates the snapshot when it builds the Docker image. Production jobs are serialized and limited to 90 minutes.
+At 8:30 a.m. Lima time (13:30 UTC) daily, or when manually dispatched, the production workflow compares SUNAT's ETag, Last-Modified value, Content-Length, and the pipeline version with the deployed metadata. A changed signature, unavailable metadata, or manual force triggers a Railway deployment. The upload contains source files only. Each workflow run and retry supplies a unique build marker so Railway regenerates the snapshot when it builds the Docker image. Production jobs are serialized and limited to 90 minutes.
 
 ## Deliberate non-goals
 
