@@ -12,15 +12,18 @@ const example = {
   source: "SUNAT",
   as_of: null,
 };
+const exampleOutput = {
+  label: "Respuesta de ejemplo",
+  body: JSON.stringify(example, null, 2),
+  pending: false,
+};
+const responseBodyClass =
+  "wrap-break-word whitespace-pre-wrap pt-2 leading-relaxed";
 
 export function RucTerminal({ apiOrigin }: { apiOrigin: string }) {
   const [ruc, setRuc] = useState(example.ruc);
   const [copyMessage, setCopyMessage] = useState("");
-  const [output, setOutput] = useState({
-    label: "Respuesta de ejemplo",
-    body: JSON.stringify(example, null, 2),
-    pending: false,
-  });
+  const [output, setOutput] = useState(exampleOutput);
   const endpoint = `${apiOrigin}/v1/ruc/`;
   const isComplete = ruc.length === 11;
 
@@ -37,7 +40,7 @@ export function RucTerminal({ apiOrigin }: { apiOrigin: string }) {
     event.preventDefault();
     if (!isComplete || output.pending) return;
 
-    setOutput({ label: "Consultando RUC…", body: "", pending: true });
+    setOutput((current) => ({ ...current, pending: true }));
     try {
       const response = await fetch(`${endpoint}${ruc}`, {
         headers: { Accept: "application/json" },
@@ -127,18 +130,25 @@ export function RucTerminal({ apiOrigin }: { apiOrigin: string }) {
             />
           </label>
         </div>
-        <p
-          role="status"
-          className="px-4 pt-5 text-sm font-medium text-muted sm:px-6"
-        >
-          {output.label}
-        </p>
-        <pre
-          aria-busy={output.pending}
-          className="min-h-56 wrap-break-word whitespace-pre-wrap px-4 pt-2 pb-5 text-sm leading-relaxed sm:px-6"
-        >
-          <code>{output.body}</code>
-        </pre>
+        <div className="grid grid-cols-1 px-4 pt-5 pb-5 text-sm sm:px-6">
+          {/* The example sets a minimum height that follows line wrapping. */}
+          <div aria-hidden="true" className="invisible col-start-1 row-start-1">
+            <p className="font-medium">{exampleOutput.label}</p>
+            <pre className={responseBodyClass}>
+              <code>{exampleOutput.body}</code>
+            </pre>
+          </div>
+          <div className="col-start-1 row-start-1">
+            <p role="status" className="font-medium text-muted">
+              {output.pending ? "Consultando RUC…" : output.label}
+            </p>
+            <pre aria-busy={output.pending} className={responseBodyClass}>
+              <code className={output.pending ? "invisible" : undefined}>
+                {output.body}
+              </code>
+            </pre>
+          </div>
+        </div>
       </form>
       <p
         role="status"
