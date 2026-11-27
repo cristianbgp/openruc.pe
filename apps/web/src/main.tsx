@@ -1,79 +1,16 @@
 import "@fontsource-variable/geist-mono";
 import "./styles.css";
-import Copy from "lucide-react/icons/copy";
-import { StrictMode, useState } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { resolveApiOrigin } from "./api-origin";
 import githubMark from "./github-mark.svg";
+import { RucTerminal } from "./ruc-terminal";
 
 const api = resolveApiOrigin(
   new URL(window.location.href),
   import.meta.env.DEV,
   import.meta.env.VITE_API_URL,
 );
-
-const example = {
-  ruc: "20100047218",
-  razon_social: "BANCO DE CREDITO DEL PERU",
-  estado: "ACTIVO",
-  condicion: "HABIDO",
-  direccion: "JR. CENTENARIO 156 LADERAS DE MELGAREJO",
-  ubigeo: "150114",
-  source: "SUNAT",
-  as_of: null,
-};
-const command = `curl ${api}/v1/ruc/${example.ruc}`;
-
-function RequestExample() {
-  const [copyState, setCopyState] = useState<"idle" | "copied" | "error">(
-    "idle",
-  );
-
-  async function copyCommand() {
-    try {
-      await navigator.clipboard.writeText(command);
-      setCopyState("copied");
-    } catch {
-      setCopyState("error");
-    }
-  }
-
-  return (
-    <section aria-labelledby="example-title" className="min-w-0">
-      <div className="rounded-lg border border-line bg-panel">
-        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line px-4 py-2 sm:px-6">
-          <h2 id="example-title" className="text-sm font-semibold">
-            Ejemplo de consulta
-          </h2>
-          <button
-            type="button"
-            onClick={copyCommand}
-            className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-lg border border-control-line px-3 text-sm font-medium hover:bg-canvas focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          >
-            <Copy aria-hidden="true" size={16} />
-            Copiar comando
-          </button>
-        </div>
-        <pre className="whitespace-pre-wrap break-all border-b border-line bg-code px-4 py-4 text-sm text-ink sm:px-6">
-          <code>{command}</code>
-        </pre>
-        <p className="px-4 pt-5 text-sm font-medium text-muted sm:px-6">
-          Respuesta de ejemplo
-        </p>
-        <pre className="wrap-break-word whitespace-pre-wrap px-4 pt-2 pb-5 text-sm leading-relaxed sm:px-6">
-          <code>{JSON.stringify(example, null, 2)}</code>
-        </pre>
-      </div>
-      <p role="status" className="mt-2 min-h-6 text-sm text-muted">
-        {copyState === "copied"
-          ? "Comando copiado."
-          : copyState === "error"
-            ? "Selecciona el comando para copiarlo manualmente."
-            : null}
-      </p>
-    </section>
-  );
-}
 
 function App() {
   return (
@@ -104,7 +41,7 @@ function App() {
           </a>
         </div>
 
-        <RequestExample />
+        <RucTerminal apiOrigin={api} />
       </main>
 
       <footer className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-t border-line py-5 text-sm text-muted">

@@ -21,7 +21,7 @@ HTTP client -> Hono route -> RUC validation -> prepared exact-key SQLite query
 
 The importer creates `apps/api/data/padron.sqlite.next`, validates it, and replaces `apps/api/data/padron.sqlite` only after every check succeeds. A failed or interrupted import leaves the previous snapshot untouched. The API opens the published snapshot in read-only mode.
 
-The Bun workspace contains two independently deployable apps. `apps/api` builds and serves the registry. `apps/web` is a static React and Vite landing page with a copyable curl example and a link to Swagger.
+The Bun workspace contains two independently deployable apps. `apps/api` builds and serves the registry. `apps/web` is a static React and Vite landing page with an interactive terminal. Edit the RUC and run the lookup to see the HTTP status and JSON, or copy the curl command to use it from your own terminal.
 
 ## Requirements
 
@@ -205,7 +205,6 @@ At 05:00 UTC daily, or when manually dispatched, the production workflow compare
 - Name, address, or partial-RUC search
 - Writes, accounts, API keys, or billing
 - PostgreSQL, Redis, volumes, or persistent distributed rate limits
-- A live lookup form on the landing page
 
 ## License
 
